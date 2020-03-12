@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_102640) do
+ActiveRecord::Schema.define(version: 2020_03_12_180636) do
 
   create_table "aliases", force: :cascade do |t|
     t.string "name"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 2020_03_12_102640) do
     t.index ["house_id"], name: "index_characters_houses_on_house_id"
   end
 
+  create_table "characters_titles", force: :cascade do |t|
+    t.integer "character_id", null: false
+    t.integer "title_id", null: false
+    t.index ["character_id"], name: "index_characters_titles_on_character_id"
+    t.index ["title_id"], name: "index_characters_titles_on_title_id"
+  end
+
   create_table "houses", force: :cascade do |t|
     t.string "url_id"
     t.string "name"
@@ -91,6 +98,8 @@ ActiveRecord::Schema.define(version: 2020_03_12_102640) do
   add_foreign_key "books_characters", "characters"
   add_foreign_key "characters_houses", "characters"
   add_foreign_key "characters_houses", "houses"
+  add_foreign_key "characters_titles", "characters"
+  add_foreign_key "characters_titles", "titles"
   add_foreign_key "houses_titles", "houses"
   add_foreign_key "houses_titles", "titles"
   add_foreign_key "seats", "houses"
