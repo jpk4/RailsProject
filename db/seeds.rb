@@ -53,7 +53,7 @@ book_ids.each do |book_id|
   released = book['released']
   number_of_pages = book['numberOfPages']
 
-  books = Book.create(name: name, released: released, number_of_pages: number_of_pages)
+  Book.create(name: name, released: released, number_of_pages: number_of_pages)
 end
 
 character_ids = random_numbers(40, 2138)
@@ -71,9 +71,7 @@ character_ids.each do |character_id|
     kill_count += 1 if death['killer'] == name
   end
 
-  if kill_count > 0
-    puts "Name: #{name} - Kill Count: #{kill_count}"
-  end
+  puts "Name: #{name} - Kill Count: #{kill_count}" if kill_count > 0
 
   characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
 
@@ -97,7 +95,7 @@ house_ids.each do |house_id|
   region = house['region']
   coat_of_arms = house['coatOfArms']
   words = house['words']
-  members = house['swornMembers'].map { |character_url| got_fetch(character_url) }
+  # members = house['swornMembers'].map { |character_url| got_fetch(character_url) }
 
   houses = House.create(name: name, region: region, coat_of_arms: coat_of_arms, words: words)
 
