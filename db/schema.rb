@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_101346) do
+ActiveRecord::Schema.define(version: 2020_03_12_101709) do
 
   create_table "aliases", force: :cascade do |t|
     t.string "name"
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 2020_03_12_101346) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["house_id"], name: "index_seats_on_house_id"
+  end
+
+  create_table "titles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "aliases", "characters"
