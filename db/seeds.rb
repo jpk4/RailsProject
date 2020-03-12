@@ -11,6 +11,10 @@ Character.destroy_all
 
 require 'open-uri'
 require 'json'
+require 'csv'
+
+csv_file = Rails.root + 'db/deaths.csv'
+deaths = CSV.parse(File.read(csv_file), headers: true)
 
 def got_fetch(url)
   JSON.parse(open(url).read)
@@ -52,7 +56,7 @@ book_ids.each do |book_id|
   books = Book.create(name: name, released: released, number_of_pages: number_of_pages)
 end
 
-character_ids = random_numbers(10, 2138)
+character_ids = random_numbers(40, 2138)
 
 character_ids.each do |character_id|
   character = got_fetch(character_url(character_id))
@@ -60,9 +64,18 @@ character_ids.each do |character_id|
   born = character['born']
   died = character['died']
   culture = character['culture']
-  character_quote = Faker::TvShows::GameOfThrones.unique.quote
+  character_quote = Faker::TvShows::GameOfThrones.quote
+  kill_count = 0
 
-  characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote)
+  deaths.each do |death|
+    kill_count += 1 if death['killer'] == name
+  end
+
+  if kill_count > 0
+    puts "Name: #{name} - Kill Count: #{kill_count}"
+  end
+
+  characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
 
   aliases = character['aliases']
 
@@ -104,3 +117,4 @@ puts "Created #{Character.count} Characters."
 puts "Created #{House.count} Houses."
 puts "Created #{Seat.count} Seats."
 puts "Created #{Alias.count} Aliases."
+puts "Deaths: #{deaths.count}"
