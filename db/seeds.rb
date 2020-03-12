@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Seat.destroy_all
-# Alias.destroy_all
+Alias.destroy_all
 Book.destroy_all
 # Title.destroy_all
 House.destroy_all
@@ -63,6 +63,17 @@ character_ids.each do |character_id|
   character_quote = Faker::TvShows::GameOfThrones.unique.quote
 
   characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote)
+
+  aliases = character['aliases']
+
+  # puts "Character Name: #{name}"
+
+  aliases.each do |aka|
+    next if aka.empty?
+
+    # puts "Alias: #{aka}"
+    characters.aliases.create(name: aka)
+  end
 end
 
 house_ids = random_numbers(10, 444)
@@ -92,3 +103,4 @@ puts "Created #{Book.count} Books."
 puts "Created #{Character.count} Characters."
 puts "Created #{House.count} Houses."
 puts "Created #{Seat.count} Seats."
+puts "Created #{Alias.count} Aliases."
