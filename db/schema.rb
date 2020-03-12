@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_075934) do
+ActiveRecord::Schema.define(version: 2020_03_12_080509) do
+
+  create_table "aliases", force: :cascade do |t|
+    t.string "name"
+    t.integer "character_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_aliases_on_character_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "url_id"
@@ -24,4 +32,5 @@ ActiveRecord::Schema.define(version: 2020_03_12_075934) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "aliases", "characters"
 end
