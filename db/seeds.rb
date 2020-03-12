@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Seat.destroy_all
+Seat.destroy_all
 # Alias.destroy_all
 Book.destroy_all
 # Title.destroy_all
@@ -52,7 +52,7 @@ book_ids.each do |book_id|
   books = Book.create(name: name, released: released, number_of_pages: number_of_pages)
 end
 
-character_ids = random_numbers(100, 2138)
+character_ids = random_numbers(10, 2138)
 
 character_ids.each do |character_id|
   character = got_fetch(character_url(character_id))
@@ -65,7 +65,7 @@ character_ids.each do |character_id|
   characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote)
 end
 
-house_ids = random_numbers(100, 444)
+house_ids = random_numbers(10, 444)
 
 house_ids.each do |house_id|
   house = got_fetch(house_url(house_id))
@@ -74,11 +74,21 @@ house_ids.each do |house_id|
   coat_of_arms = house['coatOfArms']
   words = house['words']
   members = house['swornMembers'].map { |character_url| got_fetch(character_url) }
-  # seats = house['seats'].map { |house_url| got_fetch(house_url) }
 
   houses = House.create(name: name, region: region, coat_of_arms: coat_of_arms, words: words)
-end
 
+  seats = house['seats']
+
+  # puts "House Name: #{name}"
+
+  seats.each do |seat|
+    next if seat.empty?
+
+    # puts "Seat: #{seat}"
+    houses.seats.create(name: seat)
+  end
+end
 puts "Created #{Book.count} Books."
 puts "Created #{Character.count} Characters."
 puts "Created #{House.count} Houses."
+puts "Created #{Seat.count} Seats."
