@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url_id: MyString
+  name: MyString
+  released: MyString
+  number_of_pages: 1
+
+two:
+  url_id: MyString
+  name: MyString
+  released: MyString
+  number_of_pages: 1
