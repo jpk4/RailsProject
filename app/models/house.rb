@@ -5,5 +5,6 @@ class House < ApplicationRecord
   has_and_belongs_to_many :characters
   has_and_belongs_to_many :titles
 
-  validates :name, presence: true
+  validates :name, :url_id, presence: true
+  validates_associated :seats
 end

@@ -49,17 +49,19 @@ book_ids = 1..10
 
 book_ids.each do |book_id|
   book = got_fetch(book_url(book_id))
+  url_id = book['url']
   name = book['name']
   released = book['released']
   number_of_pages = book['numberOfPages']
 
-  Book.create(name: name, released: released, number_of_pages: number_of_pages)
+  Book.create(url_id: url_id, name: name, released: released, number_of_pages: number_of_pages)
 end
 
 character_ids = random_numbers(40, 2138)
 
 character_ids.each do |character_id|
   character = got_fetch(character_url(character_id))
+  url_id = character['url']
   name = character['name']
   born = character['born']
   died = character['died']
@@ -71,9 +73,9 @@ character_ids.each do |character_id|
     kill_count += 1 if death['killer'] == name
   end
 
-  puts "Name: #{name} - Kill Count: #{kill_count}" if kill_count > 0
+  # puts "Name: #{name} - Kill Count: #{kill_count}" if kill_count > 0
 
-  characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
+  characters = Character.create(url_id: url_id, name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
 
   aliases = character['aliases']
 
@@ -100,17 +102,18 @@ house_ids = random_numbers(10, 444)
 
 house_ids.each do |house_id|
   house = got_fetch(house_url(house_id))
+  url_id = house['url']
   name = house['name']
   region = house['region']
   coat_of_arms = house['coatOfArms']
   words = house['words']
   # members = house['swornMembers'].map { |character_url| got_fetch(character_url) }
 
-  houses = House.create(name: name, region: region, coat_of_arms: coat_of_arms, words: words)
+  houses = House.create(url_id: url_id, name: name, region: region, coat_of_arms: coat_of_arms, words: words)
 
   seats = house['seats']
 
-  puts "House Name: #{name}"
+  # puts "House Name: #{name}"
 
   seats.each do |seat|
     next if seat.empty?
@@ -124,7 +127,7 @@ house_ids.each do |house_id|
   titles.each do |title|
     next if title.empty?
 
-    puts "Title: #{title}"
+    # puts "Title: #{title}"
     houses.titles.find_or_create_by(name: title)
   end
 end

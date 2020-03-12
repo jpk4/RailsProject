@@ -6,5 +6,7 @@ class Character < ApplicationRecord
   has_and_belongs_to_many :houses
   has_and_belongs_to_many :titles
 
-  validates :name, presence: true
+  validates :name, :url_id, presence: true
+  validates_associated :aliases
+  validates :kill_count, numericality: { only_integer: true }
 end
