@@ -57,7 +57,7 @@ book_ids.each do |book_id|
   Book.create(url_id: url_id, name: name, released: released, number_of_pages: number_of_pages)
 end
 
-character_ids = random_numbers(40, 2138)
+character_ids = random_numbers(100, 2138)
 
 character_ids.each do |character_id|
   character = got_fetch(character_url(character_id))
@@ -98,7 +98,8 @@ character_ids.each do |character_id|
   end
 end
 
-house_ids = random_numbers(10, 444)
+# house_ids = random_numbers(444, 444)
+house_ids = (1..444)
 
 house_ids.each do |house_id|
   house = got_fetch(house_url(house_id))
