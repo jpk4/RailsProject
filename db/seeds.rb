@@ -3,7 +3,7 @@
 Seat.destroy_all
 Alias.destroy_all
 Book.destroy_all
-# Title.destroy_all
+Title.destroy_all
 House.destroy_all
 Character.destroy_all
 
@@ -83,7 +83,16 @@ character_ids.each do |character_id|
     next if aka.empty?
 
     # puts "Alias: #{aka}"
-    characters.aliases.create(name: aka)
+    characters.aliases.find_or_create_by(name: aka)
+  end
+
+  titles = character['titles']
+
+  titles.each do |title|
+    next if title.empty?
+
+    # puts "Title: #{title}"
+    characters.titles.find_or_create_by(name: title)
   end
 end
 
@@ -101,13 +110,22 @@ house_ids.each do |house_id|
 
   seats = house['seats']
 
-  # puts "House Name: #{name}"
+  puts "House Name: #{name}"
 
   seats.each do |seat|
     next if seat.empty?
 
     # puts "Seat: #{seat}"
-    houses.seats.create(name: seat)
+    houses.seats.find_or_create_by(name: seat)
+  end
+
+  titles = house['titles']
+
+  titles.each do |title|
+    next if title.empty?
+
+    puts "Title: #{title}"
+    houses.titles.find_or_create_by(name: title)
   end
 end
 puts "Created #{Book.count} Books."
@@ -116,3 +134,4 @@ puts "Created #{House.count} Houses."
 puts "Created #{Seat.count} Seats."
 puts "Created #{Alias.count} Aliases."
 puts "Deaths: #{deaths.count}"
+puts "Titles: #{Title.count} Titles"
