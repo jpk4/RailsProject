@@ -37,9 +37,8 @@ def character_name_list(characters)
   character_list.join(', ')
 end
 
-# def cadet_name_list(houses)
-#   cadet_list = houses.map { |h| h['name'] }
-#   cadet_list.join(', ')
+# def seat_name_list(houses)
+#   seat_list = houses.map { |h| h['name'] }
 # end
 
 book_ids = 1..10
@@ -61,8 +60,9 @@ character_ids.each do |character_id|
   born = character['born']
   died = character['died']
   culture = character['culture']
+  character_quote = Faker::TvShows::GameOfThrones.unique.quote
 
-  characters = Character.create(name: name, born: born, died: died, culture: culture)
+  characters = Character.create(name: name, born: born, died: died, culture: culture, quote: character_quote)
 end
 
 house_ids = random_numbers(100, 444)
@@ -74,11 +74,7 @@ house_ids.each do |house_id|
   coat_of_arms = house['coatOfArms']
   words = house['words']
   members = house['swornMembers'].map { |character_url| got_fetch(character_url) }
-
-  # puts "Name: #{house['name']}"
-  # puts "Region: #{house['region']}"
-  # puts "Members: #{character_name_list(members)}"
-  # puts "\n\n"
+  # seats = house['seats'].map { |house_url| got_fetch(house_url) }
 
   houses = House.create(name: name, region: region, coat_of_arms: coat_of_arms, words: words)
 end
