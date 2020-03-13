@@ -2,7 +2,7 @@
 
 class HousesController < ApplicationController
   def index
-    @houses = House.all
+    @houses = House.order(:name).page(params[:page])
   end
 
   def show

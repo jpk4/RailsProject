@@ -1,6 +1,7 @@
 <% if @houses.empty?%>
   <p>There are no houses available.</p>
 <% else %>
+<%= paginate @houses %>
   <% @houses.each do |house| %>
     <h2><%= house.name%></h2>
       <p>There are <%= house.characters.size %> characters who are sworn to this house.</p>

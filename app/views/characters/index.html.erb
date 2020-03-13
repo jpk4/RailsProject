@@ -2,6 +2,7 @@
 <% if @characters.empty?%>
   <p>There are no characters available.</p>
 <% else %>
+<%= paginate @characters %>
   <% @characters.each do |character| %>
     <ul>
       <li><%= link_to character.name, character_path(character) %></li>
