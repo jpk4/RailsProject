@@ -31,3 +31,11 @@
 <h4>Culture: <%= @character.culture%></h4>
 <h4>Quote: <span><i><%=@character.quote%></i></span></h4>
 <h4>Kill Count: <%= @character.kill_count%></h4>
+<% if !@character.books.empty? %>
+  <h4>POV Character In: </h4>
+  <% @character.books.each do |book| %>
+    <ul>
+      <li><%= link_to book.name, book_path(book)%></li>
+    </ul>
+  <% end %>
+<% end %>

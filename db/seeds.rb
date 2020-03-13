@@ -42,7 +42,7 @@ def character_name_list(characters)
   character_list.join(', ')
 end
 
-character_ids = random_numbers(10, 2138)
+character_ids = random_numbers(200, 2138)
 
 character_ids.each do |character_id|
   character = got_fetch(character_url(character_id))
@@ -141,7 +141,7 @@ house_ids.each do |house_id|
     next if title.empty?
 
     # puts "Title: #{title}"
-    houses.titles << Title.where(name: title).first_or_create()
+    houses.titles << Title.where(name: title).first_or_create
   end
 end
 puts "Created #{Book.count} Books."
