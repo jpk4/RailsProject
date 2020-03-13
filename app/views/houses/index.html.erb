@@ -3,7 +3,7 @@
 <% else %>
   <% @houses.each do |house| %>
     <h2><%= house.name%></h2>
-    <p>There are <%= house.characters.size %> characters who are sworn to this house.</p>
-    <p> Enter <%= house.name %></p>
+      <p>There are <%= house.characters.size %> characters who are sworn to this house.</p>
+    <p> Enter <%= link_to house.name, house %></p>
   <% end %>
 <% end %>

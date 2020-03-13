@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
   root to: 'houses#index'
-  get 'houses/:id', to: 'houses#show', id: /\d+/
+
+  resources 'houses', only: %i[index show]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
