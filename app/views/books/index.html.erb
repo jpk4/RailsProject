@@ -1,2 +1,10 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<h2>All Books in 'A Song of Ice and Fire' Series</h2>
+<% if @books.empty?%>
+  <p>There are no books available.</p>
+<% else %>
+  <% @books.each do |book| %>
+    <ul>
+      <li><%= link_to book.name, book_path(book) %></li>
+    </ul>
+  <% end %>
+<% end %>

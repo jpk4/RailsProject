@@ -1,2 +1,17 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h2><%= @book.name %></h2>
+<h4>By: George R. R. Martin</h4>
+<h4>Released: <%= @book.released%></h4>
+<h4>Total No. of Pages: <%= @book.number_of_pages%></h4>
+<h4>Chapter POV Characters: </h4>
+<% if @book.characters.empty? %>
+  <p>There are no known POV characters for this book.</p>
+<% else %>
+  <p>There are <%= @book.characters.size %> POV characters for this book.</p>
+  <% @book.characters.each do |pov| %>
+    <ul>
+      <li>
+        <%= link_to pov.name, character_path(pov)%>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
