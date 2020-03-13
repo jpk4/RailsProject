@@ -1,2 +1,2 @@
-<h1>Seats#show</h1>
-<p>Find me in app/views/seats/show.html.erb</p>
+<h2><%= @seat.name %></h2>
+<p>This seat belongs to <%= link_to @seat.house.name, @seat.house %></p>

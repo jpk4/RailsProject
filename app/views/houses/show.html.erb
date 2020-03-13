@@ -1,5 +1,8 @@
 <h2><%= @house.name %></h2>
 <h4>Region: <%= @house.region %></h4>
+<% @house.seats.each do |seat| %>
+  <h4>Seat: <%= link_to seat.name, seat_path(seat) %></h4>
+<% end %>
 <h4>Coat of Arms: <%= @house.coat_of_arms%></h4>
 <h4>House Words: <%= @house.words %></h4>
 

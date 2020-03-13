@@ -1,2 +1,12 @@
-<h1>Seats#index</h1>
-<p>Find me in app/views/seats/index.html.erb</p>
+<h2>All House Seats</h2>
+<% if @seats.empty? %>
+  <p>There are no known house seats.</p>
+<% else %>
+  <ul>
+    <% @seats.each do |seat|%>
+      <li>
+        <p><%= link_to seat.name, seat_path(seat) %> belonging to <%= link_to seat.house.name, seat.house %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
