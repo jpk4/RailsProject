@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_063625) do
+ActiveRecord::Schema.define(version: 2020_03_13_090617) do
 
   create_table "aliases", force: :cascade do |t|
     t.string "name"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 2020_03_13_063625) do
     t.integer "title_id", null: false
     t.index ["house_id"], name: "index_houses_titles_on_house_id"
     t.index ["title_id"], name: "index_houses_titles_on_title_id"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "permalink"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "seats", force: :cascade do |t|
