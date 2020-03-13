@@ -59,8 +59,13 @@ character_ids.each do |character_id|
   end
 
   # puts "Name: #{name} - Kill Count: #{kill_count}" if kill_count > 0
+  allegiances = character['allegiances'].map { |house_url| got_fetch(house_url) }
 
   characters = Character.where(url_id: url_id).first_or_create(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
+
+  allegiances.each do |allegiance|
+    characters.houses << House.where(url_id: allegiance['url']).first_or_create(name: allegiance['name'], region: allegiance['region'], coat_of_arms: allegiance['coatOfArms'], words: allegiance['words'])
+  end
 
   aliases = character['aliases']
 
@@ -69,7 +74,6 @@ character_ids.each do |character_id|
   aliases.each do |aka|
     next if aka.empty?
 
-    # puts "Alias: #{aka}"
     characters.aliases.find_or_create_by(name: aka)
   end
 
@@ -78,7 +82,6 @@ character_ids.each do |character_id|
   titles.each do |title|
     next if title.empty?
 
-    # puts "Title: #{title}"
     characters.titles.find_or_create_by(name: title)
   end
 end
