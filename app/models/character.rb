@@ -9,4 +9,5 @@ class Character < ApplicationRecord
   validates :url_id, presence: true
   validates_associated :aliases
   validates :kill_count, numericality: { only_integer: true }
+  paginates_per 20
 end
