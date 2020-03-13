@@ -1,4 +1,12 @@
 <h2><%= @character.name %></h2>
+<% if !@character.aliases.empty? %>
+<h4>Aliases:</h4>
+  <% @character.aliases.each do |aka| %>
+    <ul>
+      <li><%= link_to aka.name, alias_path(aka) %></li>
+    </ul>
+  <% end %>
+<% end %>
 <% if @character.born.nil?%>
   <h4>Born: Unknown</h4>
 <% else %>

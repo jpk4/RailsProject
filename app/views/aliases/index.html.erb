@@ -1,2 +1,12 @@
-<h1>Aliases#index</h1>
-<p>Find me in app/views/aliases/index.html.erb</p>
+<h2>All Character Aliases</h2>
+<% if @aliases.empty? %>
+  <p>There are no known character aliases.</p>
+<% else %>
+  <ul>
+    <% @aliases.each do |aka| %>
+      <li>
+        <p><%= link_to aka.name, alias_path(aka) %>, commonly known as <%= link_to aka.character.name, aka.character %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
