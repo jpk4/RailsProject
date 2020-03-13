@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get 'houses/index'
-  get 'houses/show'
+  root to: 'houses#index'
+  get 'houses/:id', to: 'houses#show', id: /\d+/
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
