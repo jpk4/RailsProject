@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_180636) do
+ActiveRecord::Schema.define(version: 2020_03_13_063625) do
 
   create_table "aliases", force: :cascade do |t|
     t.string "name"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2020_03_12_180636) do
   create_table "characters", force: :cascade do |t|
     t.string "url_id"
     t.string "name"
-    t.datetime "born"
-    t.datetime "died"
+    t.string "born"
+    t.string "died"
     t.string "culture"
     t.string "quote"
     t.integer "kill_count"
