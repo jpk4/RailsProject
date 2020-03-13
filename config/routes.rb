@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'books/index'
+  get 'books/show'
   root to: 'houses#index'
 
   resources 'houses', only: %i[index show]
