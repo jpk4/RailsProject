@@ -82,7 +82,7 @@ character_ids.each do |character_id|
   titles.each do |title|
     next if title.empty?
 
-    characters.titles.find_or_create_by(name: title)
+    characters.titles << Title.where(name: title).first_or_create
   end
 end
 
@@ -141,7 +141,7 @@ house_ids.each do |house_id|
     next if title.empty?
 
     # puts "Title: #{title}"
-    houses.titles.find_or_create_by(name: title)
+    houses.titles << Title.where(name: title).first_or_create()
   end
 end
 puts "Created #{Book.count} Books."
@@ -149,5 +149,5 @@ puts "Created #{Character.count} Characters."
 puts "Created #{House.count} Houses."
 puts "Created #{Seat.count} Seats."
 puts "Created #{Alias.count} Aliases."
-puts "Deaths: #{deaths.count}"
-puts "Titles: #{Title.count} Titles"
+puts "Created: #{Title.count} Titles"
+puts "Death Count: #{deaths.count}"

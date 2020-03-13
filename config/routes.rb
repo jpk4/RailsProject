@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'titles/index'
-  get 'titles/show'
   root to: 'houses#index'
 
   resources 'houses', only: %i[index show]
@@ -10,6 +8,7 @@ Rails.application.routes.draw do
   resources 'characters', only: %i[index show]
   resources 'aliases', only: %i[index show]
   resources 'books', only: %i[index show]
+  resources 'titles', only: %i[index show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

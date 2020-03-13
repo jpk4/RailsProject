@@ -7,15 +7,23 @@
     </ul>
   <% end %>
 <% end %>
-<% if @character.born.nil?%>
+<% if @character.born.empty?%>
   <h4>Born: Unknown</h4>
 <% else %>
   <h4>Born: <%= @character.born%></h4>
 <% end %>
-<% if @character.died.nil?%>
+<% if @character.died.empty?%>
   <h4>Died: Unknown</h4>
 <% else %>
   <h4>Died: <%= @character.died%></h4>
+<% end %>
+<% if !@character.titles.empty? %>
+  <h4>Titles:</h4>
+  <% @character.titles.each do |title|%>
+    <ul>
+      <li><%=link_to title.name, title_path(title)%></li>
+    </ul>
+  <% end %>
 <% end %>
 <% @character.houses.each do |house| %>
   <h4>Allegiances: <%= link_to house.name, house_path(house) %></h4>

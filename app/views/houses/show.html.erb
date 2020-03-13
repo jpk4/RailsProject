@@ -32,7 +32,7 @@
   <% @house.titles.each do |title| %>
     <ul>
       <li>
-        <%= title.name%>
+        <%= link_to title.name, title_path(title)%>
       </li>
     </ul>
   <% end %>
