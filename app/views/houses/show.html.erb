@@ -14,7 +14,7 @@
   <% @house.characters.each do |member| %>
     <ul>
       <li>
-        <%= member.name%>
+        <%= link_to member.name, character_path(member)%>
       </li>
     </ul>
   <% end %>

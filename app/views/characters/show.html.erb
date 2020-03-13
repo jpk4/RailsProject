@@ -1,2 +1,17 @@
-<h1>Characters#show</h1>
-<p>Find me in app/views/characters/show.html.erb</p>
+<h2><%= @character.name %></h2>
+<% if @character.born.nil?%>
+  <h4>Born: Unknown</h4>
+<% else %>
+  <h4>Born: <%= @character.born%></h4>
+<% end %>
+<% if @character.died.nil?%>
+  <h4>Died: Unknown</h4>
+<% else %>
+  <h4>Died: <%= @character.died%></h4>
+<% end %>
+<% @character.houses.each do |house| %>
+  <h4>Allegiances: <%= link_to house.name, house_path(house) %></h4>
+<% end %>
+<h4>Culture: <%= @character.culture%></h4>
+<h4>Quote: <span><i><%=@character.quote%></i></span></h4>
+<h4>Kill Count: <%= @character.kill_count%></h4>
