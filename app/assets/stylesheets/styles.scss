@@ -1,0 +1,65 @@
+body {
+  background-color: #eee;
+}
+
+.navbar {
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+article {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  padding-bottom: 1rem;
+}
+
+form.search-form {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+}
+
+.column {
+  display: flex;
+}
+
+.paginate{
+  margin-top: 2rem;
+}
+
+.pagination{
+  width: 30%;
+}
+nav a:hover {
+  background-color: white;
+  color: hsl(171, 100%, 41%);
+}
+
+a:hover {
+  background-color: hsla(0, 0%, 100%, 0);
+  color: hsl(171, 100%, 41%);
+}
+
+h4 a, p  a, p a:visited, h4 a:visited {
+  color: hsl(171, 100%, 41%);
+}
+
+p a:hover, h4 a:hover {
+  color: 	#585858;
+}
+
+a {
+  font-weight: bold;
+}
+
+// .tile.is-ancestor{
+//   padding-top: 2rem;
+// }
+
+ a:hover {
+  color: black;
+}
+
+#main.footer {
+  margin-top: 2rem;
+}

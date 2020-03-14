@@ -1,12 +1,16 @@
-<h2>All Characters</h2>
+<h2 class="title is-4">All Characters</h2>
 <% if @characters.empty?%>
   <p>There are no characters available.</p>
 <% else %>
-<%= paginate @characters %>
   <% @characters.each do |character| %>
-    <ul>
-      <li><%= link_to character.name, character_path(character) %></li>
-    </ul>
+      <div class="card">
+        <div class="card-content">
+          <h4 class="title is-4"><%= link_to character.name, character_path(character) %></h4>
+        </div>
+      </div>
   <% end %>
+  <div class="paginate">
+    <%= paginate @characters %>
+  </div>
 <% end %>
 

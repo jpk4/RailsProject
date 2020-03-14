@@ -2,7 +2,7 @@
 
 class TitlesController < ApplicationController
   def index
-    @titles = Title.all.order(:name)
+    @titles = Title.order(:name).page(params[:page])
   end
 
   def show

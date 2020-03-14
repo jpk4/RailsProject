@@ -1,17 +1,33 @@
-<h2><%= @book.name %></h2>
-<h4>By: George R. R. Martin</h4>
-<h4>Released: <%= @book.released%></h4>
-<h4>Total No. of Pages: <%= @book.number_of_pages%></h4>
-<h4>Chapter POV Characters: </h4>
-<% if @book.characters.empty? %>
-  <p>There are no known POV characters for this book.</p>
-<% else %>
-  <p>There are <%= @book.characters.size %> POV characters for this book.</p>
-  <% @book.characters.each do |pov| %>
-    <ul>
-      <li>
-        <%= link_to pov.name, character_path(pov)%>
-      </li>
-    </ul>
-  <% end %>
-<% end %>
+<div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <article class="tile is-child box notification is-primary">
+        <h2 class="title is-3"><%= @book.name %></h2>
+        <h4 class="title is-6">By: George R. R. Martin</h4>
+      </article>
+    </div>
+    <div class="tile is-parent is-vertical">
+          <article class="tile is-child box">
+            <h4 class="title is-6">Released: </h4>
+            <h4 class="title is-6"><%= @book.released%></h4>
+          </article>
+          <article class="tile is-child box">
+            <h4 class="title is-6">Total No. of Pages: </h4>
+            <h4 class="title is-6"><%= @book.number_of_pages%></h4>
+          </article>
+        </div>
+    <div class="tile is-parent">
+      <article class="tile is-child box notification is-primary">
+        <h4 class="title is-6">Chapter POV Characters: </h4>
+        <div class="content">
+          <% if @book.characters.empty? %>
+            <p>There are no known POV characters for this book.</p>
+          <% else %>
+            <p>There are <%= @book.characters.size %> POV characters for this book.</p>
+            <% @book.characters.each do |pov| %>
+              <p><%= link_to pov.name, character_path(pov)%></p>
+            <% end %>
+          <% end %>
+        </div>
+      </article>
+    </div>
+</div>

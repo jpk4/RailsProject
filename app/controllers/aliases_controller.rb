@@ -2,7 +2,7 @@
 
 class AliasesController < ApplicationController
   def index
-    @aliases = Alias.includes(:character).order(:name)
+    @aliases = Alias.includes(:character).order(:name).page(params[:page])
   end
 
   def show

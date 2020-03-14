@@ -5,4 +5,6 @@ class Seat < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: true
+
+   paginates_per 18
 end

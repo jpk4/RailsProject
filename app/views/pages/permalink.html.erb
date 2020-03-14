@@ -1,5 +1,12 @@
-<h2><%= @page.title %></h2>
-<article>
-  <%= @page.content %>
-</article>
-<p>Last Updated: <%= @page.updated_at%>
+<h2 class="title is-4"><%= @page.title %></h2>
+<div class="card">
+  <div class="card-content">
+    <article>
+      <%= @page.content %>
+    </article>
+    <footer class="card-footer">
+      <p class="card-footer-item">Last Updated: <%= @page.updated_at%>
+    </footer>
+  </div>
+</div>
+

@@ -1,13 +1,17 @@
-<h2><%= @title.name %></h2>
-<% if !@title.characters.empty? %>
-  <h4>Character's Who Have Held This Title</h4>
-  <% @title.characters.each do |character| %>
-   <h4><%= link_to character.name, character_path(character) %></h4>
-  <% end %>
-<% end %>
-<% if !@title.houses.empty? %>
-  <h4>House's That Have Held This Title</h4>
-  <% @title.houses.each do |house| %>
-    <h4><%= link_to house.name, house_path(house) %></h4>
-  <% end %>
-<% end %>
+<div class="card">
+  <div class="card-content">
+    <h2 class="title is-4"><%= @title.name %></h2>
+    <% if !@title.characters.empty? %>
+      <h4 class="title is-7">Character's Who Have Held This Title</h4>
+      <% @title.characters.each do |character| %>
+      <h4><%= link_to character.name, character_path(character) %></h4>
+      <% end %>
+    <% end %>
+    <% if !@title.houses.empty? %>
+      <h4>House's That Have Held This Title</h4>
+      <% @title.houses.each do |house| %>
+        <h4><%= link_to house.name, house_path(house) %></h4>
+      <% end %>
+    <% end %>
+  </div>
+</div>

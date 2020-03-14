@@ -7,5 +7,5 @@ class House < ApplicationRecord
 
   validates :name, :url_id, presence: true
   validates_associated :seats
-  paginates_per 10
+  paginates_per 12
 end

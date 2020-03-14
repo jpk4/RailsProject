@@ -1,41 +1,83 @@
-<h2><%= @character.name %></h2>
-<% if !@character.aliases.empty? %>
-<h4>Aliases:</h4>
-  <% @character.aliases.each do |aka| %>
-    <ul>
-      <li><%= link_to aka.name, alias_path(aka) %></li>
-    </ul>
-  <% end %>
-<% end %>
-<% if @character.born.empty?%>
-  <h4>Born: Unknown</h4>
-<% else %>
-  <h4>Born: <%= @character.born%></h4>
-<% end %>
-<% if @character.died.empty?%>
-  <h4>Died: Unknown</h4>
-<% else %>
-  <h4>Died: <%= @character.died%></h4>
-<% end %>
-<% if !@character.titles.empty? %>
-  <h4>Titles:</h4>
-  <% @character.titles.each do |title|%>
-    <ul>
-      <li><%=link_to title.name, title_path(title)%></li>
-    </ul>
-  <% end %>
-<% end %>
-<% @character.houses.each do |house| %>
-  <h4>Allegiances: <%= link_to house.name, house_path(house) %></h4>
-<% end %>
-<h4>Culture: <%= @character.culture%></h4>
-<h4>Quote: <span><i><%=@character.quote%></i></span></h4>
-<h4>Kill Count: <%= @character.kill_count%></h4>
-<% if !@character.books.empty? %>
-  <h4>POV Character In: </h4>
-  <% @character.books.each do |book| %>
-    <ul>
-      <li><%= link_to book.name, book_path(book)%></li>
-    </ul>
-  <% end %>
-<% end %>
+<div class="tile is-ancestor">
+  <div class="tile is-parent">
+    <article class="tile is-child box notification is-primary">
+      <h2 class="title is-3"><%= @character.name %></h2>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <h4 class="title is-6">Aliases:</h4>
+      <div class="content">
+        <% @character.aliases.each do |aka| %>
+            <p class="title is-6"><%= link_to aka.name, alias_path(aka) %></p>
+        <% end %>
+      </div>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <h4 class="title is-6">Titles:</h4>
+      <div class="content">
+        <% @character.titles.each do |title|%>
+            <p class="title is-6"><%=link_to title.name, title_path(title)%></p>
+        <% end %>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="tile is-ancestor">
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <% if @character.born.empty?%>
+        <h4 class="title is-6">Born: Unknown</h4>
+      <% else %>
+        <h4 class="title is-6">Born: <%= @character.born%></h4>
+      <% end %>
+      <% if @character.died.empty?%>
+        <h4 class="title is-6">Died: Unknown</h4>
+      <% else %>
+        <h4 class="title is-6">Died: <%= @character.died%></h4>
+      <% end %>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <h4 class="title is-6">Allegiances: </h4>
+      <div class="content">
+        <% @character.houses.each do |house| %>
+          <h4 class="title is-6"><%= link_to house.name, house_path(house) %></h4>
+        <% end %>
+      </div>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <h4 class="title is-6">POV Character In: </h4>
+      <div class="content">
+        <% @character.books.each do |book| %>
+          <p class="title is-6"><%= link_to book.name, book_path(book)%></p>
+        <% end %>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child box">
+      <h4 class="title is-6">Culture:</h4>
+      <h4 class="title is-6"><%= @character.culture%></h4>
+    </div>
+    <div class="tile is-child box">
+      <h4 class="title is-6">Kill Count: </h4>
+      <h4 class="title is-6"><%= @character.kill_count%></h4>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <div class="tile is-child box notification is-primary">
+      <h4 class="title is-6">Quote: </h4>
+      <h4 class="title is-6"><span><i><%=@character.quote%></i></span></h4>
+    </div>
+  </div>
+</div>

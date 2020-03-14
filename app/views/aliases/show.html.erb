@@ -1,2 +1,6 @@
-<h2><%= @alias.name %></h2>
-<p><%= link_to @alias.character.name, @alias.character%> is also known as <%= @alias.name %></p>
+<div class="card">
+  <div class="card-content">
+    <h2  class="title is-4"><%= @alias.name %></h2>
+    <p><%= link_to @alias.character.name, @alias.character%> is also known as <%= @alias.name %></p>
+  </div>
+</div>

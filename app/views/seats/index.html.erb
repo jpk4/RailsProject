@@ -1,12 +1,16 @@
-<h2>All House Seats</h2>
+<h2 class="title is-4">All House Seats</h2>
 <% if @seats.empty? %>
   <p>There are no known house seats.</p>
 <% else %>
-  <ul>
-    <% @seats.each do |seat|%>
-      <li>
-        <p><%= link_to seat.name, seat_path(seat) %> belonging to <%= link_to seat.house.name, seat.house %></p>
-      </li>
-    <% end %>
-  </ul>
+  <% @seats.each do |seat|%>
+    <div class="card">
+      <div class="card-content">
+        <h4 class="title is-4"><%= link_to seat.name, seat_path(seat) %></h4>
+        <p>of <%= link_to seat.house.name, seat.house %></p>
+      </div>
+    </div>
+  <% end %>
+  <div class="paginate">
+    <%= paginate @seats %>
+  </div>
 <% end %>

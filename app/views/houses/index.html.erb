@@ -1,10 +1,22 @@
 <% if @houses.empty?%>
   <p>There are no houses available.</p>
 <% else %>
-<%= paginate @houses %>
-  <% @houses.each do |house| %>
-    <h2><%= house.name%></h2>
-      <p>There are <%= house.characters.size %> characters who are sworn to this house.</p>
-    <p> Enter <%= link_to house.name, house %></p>
-  <% end %>
+  <div class="columns is-multiline">
+    <% @houses.each do |house| %>
+    <div class="column is-3">
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title is-4"><%= house.name%></h3>
+            <p>There are <%= house.characters.size %> characters who are sworn to this house.</p>
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item"><%= link_to "View House Details", house %></p>
+          </footer>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="paginate">
+    <%= paginate @houses %>
+  </div>
 <% end %>

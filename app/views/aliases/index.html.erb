@@ -1,12 +1,16 @@
-<h2>All Character Aliases</h2>
+<h2 class="title is-4">All Character Aliases</h2>
 <% if @aliases.empty? %>
   <p>There are no known character aliases.</p>
 <% else %>
-  <ul>
     <% @aliases.each do |aka| %>
-      <li>
-        <p><%= link_to aka.name, alias_path(aka) %>, commonly known as <%= link_to aka.character.name, aka.character %></p>
-      </li>
+      <div class="card">
+        <div class="card-content">
+          <h4 class="title is-4"><%= link_to aka.name, alias_path(aka) %></h4>
+          <p> Commonly known as <%= link_to aka.character.name, aka.character %></p>
+        </div>
+      </div>
     <% end %>
-  </ul>
+    <div class="paginate">
+      <%= paginate @aliases %>
+  </div>
 <% end %>

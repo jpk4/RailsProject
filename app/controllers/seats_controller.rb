@@ -2,7 +2,7 @@
 
 class SeatsController < ApplicationController
   def index
-    @seats = Seat.includes(:house).order(:name)
+    @seats = Seat.includes(:house).order(:name).page(params[:page])
   end
 
   def show

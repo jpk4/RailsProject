@@ -1,2 +1,6 @@
-<h2><%= @seat.name %></h2>
-<p>This seat belongs to <%= link_to @seat.house.name, @seat.house %></p>
+<div class="card">
+  <div class="card-content">
+    <h2 class="title is-4"><%= @seat.name %></h2>
+    <p>This seat belongs to <%= link_to @seat.house.name, @seat.house %></p>
+  </div>
+</div>
