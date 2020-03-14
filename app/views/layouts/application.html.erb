@@ -11,26 +11,26 @@
   </head>
 
   <body>
+    <section class="hero is-black">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            A Song of Ice and Fire
+          </h1>
+        </div>
+      </div>
+    </section>
+    <nav class="navbar">
+      <a class="navbar-item"><%= link_to 'Home', root_path %></a>
+      <a class="navbar-item"><%= link_to 'About', permalink_path('about')%></a>
+      <a class="navbar-item"><%= link_to 'Characters', characters_path %></a>
+      <a class="navbar-item"><%= link_to 'Books', books_path %></a>
+      <a class="navbar-item"><%= link_to 'House & Character Titles', titles_path %></a>
+      <a class="navbar-item"><%= link_to 'Seats', seats_path %></a>
+      <a class="navbar-item"><%= link_to 'Aliases', aliases_path %></a>
+    </nav>
     <section class="section">
       <div class="container">
-        <section class="hero is-black">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                A Song of Ice and Fire
-              </h1>
-            </div>
-          </div>
-        </section>
-        <nav class="navbar">
-          <a class="navbar-item"><%= link_to 'Home', root_path %></a>
-          <a class="navbar-item"><%= link_to 'About', permalink_path('about')%></a>
-          <a class="navbar-item"><%= link_to 'Characters', characters_path %></a>
-          <a class="navbar-item"><%= link_to 'Books', books_path %></a>
-          <a class="navbar-item"><%= link_to 'House & Character Titles', titles_path %></a>
-          <a class="navbar-item"><%= link_to 'Seats', seats_path %></a>
-          <a class="navbar-item"><%= link_to 'Aliases', aliases_path %></a>
-        </nav>
         <% if current_page?('/') || current_page?('/houses/') || current_page?('/search/')%>
           <%= render partial: 'houses/search_form'%>
         <% end %>
@@ -38,14 +38,14 @@
           <%= render partial: 'characters/search_form'%>
         <% end %>
         <%= yield %>
-        <footer id="main" class="footer">
-          <div class="content has-text-centered">
-            <p>
-              <strong>A Song of Ice and Fire Rails Project</strong> by Jessica Kleysen. Copywrite 2020.
-            </p>
-          </div>
-        </footer>
       </div>
     </section>
+    <footer id="main" class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>A Song of Ice and Fire Rails Project</strong> by Jessica Kleysen. Copywrite 2020.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
