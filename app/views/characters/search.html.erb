@@ -1,0 +1,12 @@
+<div class="columns is-multiline">
+  <% @characters.each do |character| %>
+      <div class="card">
+        <div class="card-content">
+          <h4 class="title is-4"><%= link_to character.name, character_path(character) %></h4>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+

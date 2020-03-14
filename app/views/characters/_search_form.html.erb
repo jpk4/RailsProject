@@ -1,0 +1,10 @@
+<%= form_with(url: search_char_path, local: true, method: "get", class:'search-form') do %>
+  <div class="field has-addons">
+    <div class="control">
+      <%= text_field_tag(:search_char, nil, class:'input', placeholder: 'Search Characters') %>
+    </div>
+    <div class="control">
+      <%= submit_tag("Search", class: "button is-primary") %>
+    </div>
+  </div>
+<% end %>

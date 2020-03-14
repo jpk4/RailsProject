@@ -1,0 +1,15 @@
+<div class="columns is-multiline">
+  <% @houses.each do |house| %>
+    <div class="column is-3">
+        <div class="card">
+          <div class="card-content">
+            <h2 class="title is-4"><%= house.name%></h2>
+            <p>There are <%= house.characters.size %> characters who are sworn to this house.</p>
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item"><%= link_to house.name, house %></p>
+          </footer>
+        </div>
+    </div>
+  <% end %>
+</div>

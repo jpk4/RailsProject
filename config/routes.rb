@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources 'titles', only: %i[index show]
   resources :pages
 
+  get 'search', to: 'houses#search', as: 'search'
+  get 'search_char', to: 'characters#search', as: 'search_char'
   get ':permalink', to: 'pages#permalink', as: 'permalink'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

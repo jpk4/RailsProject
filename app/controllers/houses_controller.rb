@@ -8,4 +8,8 @@ class HousesController < ApplicationController
   def show
     @house = House.find(params[:id])
   end
+
+  def search
+    @houses = House.where('name LIKE ?', "%#{params[:search_term]}%")
+  end
 end
