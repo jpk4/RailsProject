@@ -49,6 +49,8 @@ book_ids.each do |book_id|
   released = book['released']
   number_of_pages = book['numberOfPages']
 
+  released.delete_suffix!('T00:00:00')
+
   books = Book.create(url_id: url_id, name: name, released: released, number_of_pages: number_of_pages)
 
   members = book['povCharacters'].map { |character_url| got_fetch(character_url) }
@@ -149,10 +151,9 @@ existing_house_urls.each do |house_url|
 
   members.each do |member|
     next if Character.exists?(url_id: member['url'])
+
     member_name = member['name']
-    if member_name.empty?
-      member_name = 'Unknown'
-    end
+    member_name = 'Unknown' if member_name.empty?
     houses.characters << Character.where(url_id: member['url']).first_or_create(name: member_name, born: member['born'], died: member['died'], culture: member['culture'], quote: '', kill_count: 0)
   end
 

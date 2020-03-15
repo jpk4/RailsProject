@@ -6,6 +6,10 @@ body {
   padding-top: 1rem;
 }
 
+.container {
+  max-width: 95%;
+}
+
 article {
   padding-left: 3.5rem;
   padding-right: 3.5rem;
@@ -58,5 +62,6 @@ a {
 }
 
 #main.footer {
-  margin-top: 2rem;
+  padding: 3rem 1.5rem 2rem;
+
 }
