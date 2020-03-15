@@ -32,7 +32,7 @@ def character_url(id)
 end
 
 def random_numbers(size, upper)
-  Array.new(size) { rand upper }
+  array = (1..upper).to_a.sample(size)
 end
 
 def character_name_list(characters)
@@ -58,10 +58,18 @@ book_ids.each do |book_id|
   end
 end
 
-character_ids = random_numbers(200, 2138)
+character_ids = random_numbers(100, 2138)
+existing_character_urls = Character.pluck(:url_id)
 
 character_ids.each do |character_id|
   character = got_fetch(character_url(character_id))
+  unless Character.exists?(url_id: character['url'])
+    existing_character_urls.push(character['url'])
+  end
+end
+
+existing_character_urls.each do |character_url|
+  character = got_fetch(character_url)
   url_id = character['url']
   name = character['name']
   born = character['born']
@@ -77,7 +85,12 @@ character_ids.each do |character_id|
 
   name = 'Unknown' if name.empty?
 
-  characters = Character.where(url_id: url_id).first_or_create(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
+  if Character.exists?(url_id: url_id)
+    characters = Character.find_by(url_id: url_id)
+    characters.update(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
+  else
+    characters = Character.where(url_id: url_id).first_or_create(name: name, born: born, died: died, culture: culture, quote: character_quote, kill_count: kill_count)
+  end
 
   allegiances.each do |allegiance|
     characters.houses << House.where(url_id: allegiance['url']).first_or_create(name: allegiance['name'], region: allegiance['region'], coat_of_arms: allegiance['coatOfArms'], words: allegiance['words'])
@@ -100,10 +113,18 @@ character_ids.each do |character_id|
   end
 end
 
-house_ids = random_numbers(10, 444)
+house_ids = random_numbers(2, 444)
+existing_house_urls = House.pluck(:url_id)
 
 house_ids.each do |house_id|
   house = got_fetch(house_url(house_id))
+  unless House.exists?(url_id: house['url'])
+    existing_house_urls.push(house['url'])
+  end
+end
+
+existing_house_urls.each do |house_url|
+  house = got_fetch(house_url)
   url_id = house['url']
   name = house['name']
   region = house['region']
@@ -111,12 +132,11 @@ house_ids.each do |house_id|
   words = house['words']
   members = house['swornMembers'].map { |character_url| got_fetch(character_url) }
 
-  # puts "Sworn Members: #{members.count}"
-
-  houses = House.create(url_id: url_id, name: name, region: region, coat_of_arms: coat_of_arms, words: words)
-
-  members.each do |member|
-    houses.characters << Character.where(url_id: member['url']).first_or_create(name: member['name'], born: member['born'], died: member['died'], culture: member['culture'], quote: '', kill_count: 0)
+  if House.exists?(url_id: url_id)
+    houses = House.find_by(url_id: url_id)
+    houses.update(name: name, region: region, coat_of_arms: coat_of_arms, words: words)
+  else
+    houses = House.create(url_id: url_id, name: name, region: region, coat_of_arms: coat_of_arms, words: words)
   end
 
   seats = house['seats']
@@ -127,12 +147,23 @@ house_ids.each do |house_id|
     houses.seats.find_or_create_by(name: seat)
   end
 
+  members.each do |member|
+    next if Character.exists?(url_id: member['url'])
+    member_name = member['name']
+    if member_name.empty?
+      member_name = 'Unknown'
+    end
+    houses.characters << Character.where(url_id: member['url']).first_or_create(name: member_name, born: member['born'], died: member['died'], culture: member['culture'], quote: '', kill_count: 0)
+  end
+
   titles = house['titles']
 
   titles.each do |title|
     next if title.empty?
 
-    houses.titles << Title.where(name: title).first_or_create
+    unless Title.exists?(name: title)
+      houses.titles << Title.where(name: title).first_or_create
+    end
   end
 end
 
