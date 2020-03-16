@@ -4,6 +4,11 @@
       <%= text_field_tag(:search_char, nil, class:'input', placeholder: 'Search Characters') %>
     </div>
     <div class="control">
+      <span class="select">
+        <%= select_tag "search_id", options_from_collection_for_select(House.all.order(:name), "id", "name"), prompt: "Filter By House" %>
+      </span>
+    </div>
+    <div class="control">
       <%= submit_tag("Search", class: "button is-primary") %>
     </div>
   </div>

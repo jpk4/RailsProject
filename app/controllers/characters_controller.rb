@@ -10,6 +10,11 @@ class CharactersController < ApplicationController
   end
 
   def search
-    @characters = Character.where('name LIKE ?', "%#{params[:search_char]}%")
+    if params[:search_id].empty?
+      @characters = Character.where('name LIKE ?', "%#{params[:search_char]}%").order(:name)
+    else
+      @characters = Character.joins('join characters_houses on characters.id = characters_houses.character_id').where('name LIKE ? AND characters_houses.house_id = ?', "%#{params[:search_char]}%", params[:search_id]).order(:name)
+      @house_name = House.find(params[:search_id])
+    end
   end
 end

@@ -1,4 +1,8 @@
-<p class="title is-6">Found <%= @characters.size%> results for "<%= params[:search_char] %>"</p>
+<% if params[:search_id].empty?%>
+  <p class="title is-6">Found <%= @characters.size%> results for "<%= params[:search_char] %>"</p>
+<% else %>
+  <p class="title is-6">Found <%= @characters.size%> results for "<%= params[:search_char] %>" in <%= @house_name.name %></p>
+<% end%>
 <% @characters.each do |character| %>
   <div class="card">
     <div class="card-content">
